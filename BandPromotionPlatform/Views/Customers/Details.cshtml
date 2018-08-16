@@ -1,0 +1,78 @@
+﻿@model BandPromotionPlatform.Models.Customer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingAddressLine1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingAddressLine1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingAddressLine2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingAddressLine2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingCity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingCity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingZipCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingZipCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingAddressLine1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BillingAddressLine1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingAddressLine2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BillingAddressLine2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingCity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BillingCity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingZipCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BillingZipCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CustomerID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

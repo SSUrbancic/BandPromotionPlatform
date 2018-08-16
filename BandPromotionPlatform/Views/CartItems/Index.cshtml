@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BandPromotionPlatform.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CartItemPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CartItemPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CartItemID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CartItemID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CartItemID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

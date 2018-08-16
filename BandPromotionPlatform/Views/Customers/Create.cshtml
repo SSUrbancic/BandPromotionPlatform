@@ -1,0 +1,78 @@
+﻿@model BandPromotionPlatform.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ShippingAddressLine1" class="control-label"></label>
+                <input asp-for="ShippingAddressLine1" class="form-control" />
+                <span asp-validation-for="ShippingAddressLine1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShippingAddressLine2" class="control-label"></label>
+                <input asp-for="ShippingAddressLine2" class="form-control" />
+                <span asp-validation-for="ShippingAddressLine2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShippingCity" class="control-label"></label>
+                <input asp-for="ShippingCity" class="form-control" />
+                <span asp-validation-for="ShippingCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShippingZipCode" class="control-label"></label>
+                <input asp-for="ShippingZipCode" class="form-control" />
+                <span asp-validation-for="ShippingZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BillingAddressLine1" class="control-label"></label>
+                <input asp-for="BillingAddressLine1" class="form-control" />
+                <span asp-validation-for="BillingAddressLine1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BillingAddressLine2" class="control-label"></label>
+                <input asp-for="BillingAddressLine2" class="form-control" />
+                <span asp-validation-for="BillingAddressLine2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BillingCity" class="control-label"></label>
+                <input asp-for="BillingCity" class="form-control" />
+                <span asp-validation-for="BillingCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BillingZipCode" class="control-label"></label>
+                <input asp-for="BillingZipCode" class="form-control" />
+                <span asp-validation-for="BillingZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<BandPromotionPlatform.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingAddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingAddressLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillingAddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillingAddressLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillingCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillingZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingAddressLine1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingAddressLine2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingAddressLine1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingAddressLine2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillingZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CustomerID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CustomerID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CustomerID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

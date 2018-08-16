@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BandPromotionPlatform.Models.OrderDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentReceived)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDelivered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDelivered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cart)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentReceived)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDelivered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDelivered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cart.CartID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OrderDetailsID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OrderDetailsID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderDetailsID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
