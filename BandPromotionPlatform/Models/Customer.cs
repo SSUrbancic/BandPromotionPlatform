@@ -32,7 +32,6 @@ namespace BandPromotionPlatform.Models
         public string PhoneNumber { get; set; }
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-
+        public string user { get; set; }
     }
 }

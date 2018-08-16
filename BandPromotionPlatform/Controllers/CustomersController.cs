@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BandPromotionPlatform.Data;
 using BandPromotionPlatform.Models;
+using System.Security.Claims;
 
 namespace BandPromotionPlatform.Controllers
 {
@@ -59,6 +60,7 @@ namespace BandPromotionPlatform.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(customer);
+                customer.user = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

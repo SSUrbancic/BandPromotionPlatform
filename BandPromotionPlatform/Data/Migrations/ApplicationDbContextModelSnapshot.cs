@@ -108,6 +108,8 @@ namespace BandPromotionPlatform.Data.Migrations
 
                     b.Property<string>("ShippingZipCode");
 
+                    b.Property<string>("user");
+
                     b.HasKey("CustomerID");
 
                     b.ToTable("Customer");
