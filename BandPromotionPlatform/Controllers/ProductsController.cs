@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BandPromotionPlatform.Data;
 using BandPromotionPlatform.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace BandPromotionPlatform.Controllers
 {
@@ -18,6 +20,15 @@ namespace BandPromotionPlatform.Controllers
         {
             _context = context;
         }
+
+        public IActionResult AddToCart()
+        {
+            var user = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            ApplicationDbContext dbContext;
+            return View();
+        }
+
+
 
         // GET: Products
         public async Task<IActionResult> Index()
