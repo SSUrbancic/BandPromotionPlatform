@@ -14,21 +14,42 @@ namespace BandPromotionPlatform.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        public ApplicationDbContext _context;
+
 
         public ProductsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IActionResult AddToCart()
+        public IActionResult AddToCart(int productID, Customer customer)
         {
-            var user = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            ApplicationDbContext dbContext;
-            return View();
+            CartItem cartItem = new CartItem();
+            cartItem.ProductID = productID;
+            Cart cart = DetermineCart(_context, customer);
+            if (cart.CartItemID1 == null)
+            {
+                cart.CartItemID1 = cartItem.CartItemID;
+            }
+            else if (cart.CartItemID2 == null)
+            {
+                cart.CartItemID2 = cartItem.CartItemID;
+            }
+            return View("Index");
         }
-
-
+        public Cart DetermineCart(ApplicationDbContext context, Customer customer)
+        {
+            Cart cart;
+            if (context.Cart == null)
+            {
+                cart = context.Cart.Where(c => c.CustomerID == customer.CustomerID).Select(c => c).First();
+            }
+            else
+            {
+                cart = new Cart();
+            }
+            return cart;
+        }
 
         // GET: Products
         public async Task<IActionResult> Index()

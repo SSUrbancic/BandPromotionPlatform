@@ -60,9 +60,8 @@ namespace BandPromotionPlatform.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(customer);
-                customer.user = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("AddToCart", "Products", customer);
             }
             return View(customer);
         }

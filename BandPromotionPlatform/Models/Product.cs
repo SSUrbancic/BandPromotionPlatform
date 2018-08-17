@@ -21,5 +21,6 @@ namespace BandPromotionPlatform.Models
         public string ProductColor { get; set; }
         [Display(Name = "Unit Price")]
         public double UnitPrice { get; set; }
+       
     }
 }
