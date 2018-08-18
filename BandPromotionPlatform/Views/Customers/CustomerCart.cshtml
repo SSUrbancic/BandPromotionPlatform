@@ -37,6 +37,18 @@
 
     </dl>
 </div>
-<div>
-    <button>Purchse</button>
-</div>
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+
+<form action="/Stripe/Charge" method="POST">
+    <article>
+        <label>Amount: $@Html.DisplayFor(model => model.CartPrice)</label>
+    </article>
+    <script src="//checkout.stripe.com/v2/checkout.js"
+            class="stripe-button"
+            data-key="@Stripe.Value.PublishableKey"
+            data-locale="auto"
+            data-description="Sample Charge"
+            data-amount="500">
+    </script>
+</form>
