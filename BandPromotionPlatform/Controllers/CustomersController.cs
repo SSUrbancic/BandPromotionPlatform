@@ -45,8 +45,9 @@ namespace BandPromotionPlatform.Controllers
         }
 
         // GET: Customers/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
+            ViewBag.ProductID = id;
             return View();
         }
 
@@ -55,17 +56,29 @@ namespace BandPromotionPlatform.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerID,ShippingAddressLine1,ShippingAddressLine2,ShippingCity,ShippingZipCode,BillingAddressLine1,BillingAddressLine2,BillingCity,BillingZipCode,PhoneNumber,Email")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerID,ShippingAddressLine1,ShippingAddressLine2,ShippingCity,ShippingZipCode,BillingAddressLine1,BillingAddressLine2,BillingCity,BillingZipCode,PhoneNumber,Email")] Customer customer, int id)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("AddToCart", "Products", customer);
+                return RedirectToAction("AddToCart", "Products", new { customerID = customer.CustomerID, productID = id });
             }
             return View(customer);
         }
-
+        public IActionResult CustomerCart(int customerID)
+        {
+            var customerCart = _context.Cart.Where(c => c.CustomerID == customerID).Select(c => c).First();
+            var cartItem1 = _context.CartItem.Where(c => c.CartItemID == customerCart.CartItemID1).Select(c => c).First();
+            var product1 = _context.Product.Where(c => c.ProductID == cartItem1.ProductID).Select(c => c).First();
+            customerCart.CartItem1 = cartItem1;
+            customerCart.CartItem1.Product = product1;
+            var cartItem2 = _context.CartItem.Where(c => c.CartItemID == customerCart.CartItemID2).Select(c => c).First();
+            var product2 = _context.Product.Where(c => c.ProductID == cartItem2.ProductID).Select(c => c).First();
+            customerCart.CartItem2 = cartItem2;
+            customerCart.CartItem2.Product = product2;
+            return View(customerCart);
+        }
         // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

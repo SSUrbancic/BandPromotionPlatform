@@ -22,33 +22,65 @@ namespace BandPromotionPlatform.Controllers
             _context = context;
         }
 
-        public IActionResult AddToCart(int productID, Customer customer)
+        public IActionResult AddToCart(int customerID, int productID)
         {
-            CartItem cartItem = new CartItem();
-            cartItem.ProductID = productID;
+            CartItem cartItem = CreateCartItem(productID);
+            var customer = DetermineCustomer(_context, customerID);
             Cart cart = DetermineCart(_context, customer);
             if (cart.CartItemID1 == null)
             {
-                cart.CartItemID1 = cartItem.CartItemID;
+                cart.CartItem1 = cartItem;
+                cart.Customer = customer;
+                _context.Cart.Add(cart);
+                _context.SaveChanges();
             }
             else if (cart.CartItemID2 == null)
             {
-                cart.CartItemID2 = cartItem.CartItemID;
+                cart.CartItem2 = cartItem;
+                _context.SaveChanges();
             }
-            return View("Index");
+
+            return RedirectToAction("CustomerCart", "Customers", new { customerID = customer.CustomerID });
+        }
+        public CartItem CreateCartItem(int productID)
+        {
+            CartItem cartItem = new CartItem();
+            Product product = _context.Product.Where(p => p.ProductID == productID).Select(p => p).First();
+            cartItem.Product = product;
+            cartItem.CartItemPrice = cartItem.ProductQuantity * cartItem.Product.UnitPrice;
+            _context.CartItem.Add(cartItem);
+            _context.SaveChanges();
+            return cartItem;
+        }
+        public Customer DetermineCustomer(ApplicationDbContext context, int customerID)
+        {
+            Customer correctCustomer;
+            Customer thisCustomer = context.Customer.Where(c => c.CustomerID == customerID).Select(c => c).First();
+            try
+            {
+                correctCustomer = context.Customer.Where(c => c.Email == thisCustomer.Email).Select(c => c).First();
+                context.Customer.Remove(thisCustomer);
+                context.SaveChangesAsync();
+            }
+            catch
+            {
+                return thisCustomer;
+            }
+            return correctCustomer;
         }
         public Cart DetermineCart(ApplicationDbContext context, Customer customer)
         {
-            Cart cart;
-            if (context.Cart == null)
+            Cart thisCart;
+            try
             {
-                cart = context.Cart.Where(c => c.CustomerID == customer.CustomerID).Select(c => c).First();
+                thisCart = context.Cart.Where(c => c.CustomerID == customer.CustomerID).Select(c => c).First();
             }
-            else
+            catch
             {
-                cart = new Cart();
+                thisCart = new Cart();
             }
-            return cart;
+            return thisCart;
+
         }
 
         // GET: Products
