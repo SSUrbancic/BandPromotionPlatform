@@ -1,0 +1,11 @@
+﻿@model BandPromotionPlatform.Models.Customer
+@{
+    ViewData["Title"] = "FindCart";
+}
+
+<h2>Find Your Cart</h2>
+<h3>Enter Email</h3>
+<form asp-controller="Customers" asp-action="FindCart" method="post">
+    <textarea asp-for="@Model.Email"></textarea>
+    <button type="submit">Go to Cart</button>
+</form>

@@ -20,17 +20,23 @@
             @Html.DisplayNameFor(model => model.CartItem2)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CartItem2.CartItemID)
+            @Html.DisplayFor(model => model.CartItem2.Product.ProductName)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Customer)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Customer.CustomerID)
+            @Html.DisplayFor(model => model.Customer.Email)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CartPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CartPrice)
+        </dd>
+
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CartID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <button>Purchse</button>
 </div>

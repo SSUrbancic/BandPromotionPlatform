@@ -66,6 +66,11 @@ namespace BandPromotionPlatform.Controllers
             }
             return View(customer);
         }
+        //GET find cart 
+        public IActionResult FindCart()
+        {
+            return View();
+        }
         public IActionResult CustomerCart(int customerID)
         {
             var customerCart = _context.Cart.Where(c => c.CustomerID == customerID).Select(c => c).First();
@@ -77,6 +82,8 @@ namespace BandPromotionPlatform.Controllers
             var product2 = _context.Product.Where(c => c.ProductID == cartItem2.ProductID).Select(c => c).First();
             customerCart.CartItem2 = cartItem2;
             customerCart.CartItem2.Product = product2;
+            var customer = _context.Customer.Where(c => c.CustomerID == customerID).Select(c => c).First();
+            customerCart.Customer = customer;
             return View(customerCart);
         }
         // GET: Customers/Edit/5
@@ -94,7 +101,15 @@ namespace BandPromotionPlatform.Controllers
             }
             return View(customer);
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //GET find cart 
+        public IActionResult FindCart(string email)
+        {
+            var customer = _context.Customer.Where(c => c.Email == email).Select(c => c).First();
+            var customerCart = _context.Cart.Where(c => c.CustomerID == customer.CustomerID).Select(c => c).First();
+            return RedirectToAction("CustomerCart", new { customerID = customerCart.CustomerID });
+        }
         // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

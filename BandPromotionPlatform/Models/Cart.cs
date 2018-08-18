@@ -12,6 +12,8 @@ namespace BandPromotionPlatform.Models
         [Key]
         [Display(Name = "Cart ID")]
         public int CartID { get; set; }
+        [Display(Name = "Cart Price")]
+        public double CartPrice { get; set; }
         [ForeignKey("CartItem1")]
         public int? CartItemID1 { get; set; }
         public CartItem CartItem1 { get; set; }

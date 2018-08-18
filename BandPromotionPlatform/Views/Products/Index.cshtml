@@ -53,6 +53,7 @@
                 <a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a> |
                 <a asp-action="Create" asp-controller="Customers" asp-route-id="@item.ProductID">Add To Cart</a>
+                <a asp-action="FindCart" asp-controller="Customers">View Cart</a>
             </td>
         </tr>
 }

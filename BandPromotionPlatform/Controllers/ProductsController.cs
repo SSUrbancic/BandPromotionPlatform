@@ -31,12 +31,14 @@ namespace BandPromotionPlatform.Controllers
             {
                 cart.CartItem1 = cartItem;
                 cart.Customer = customer;
+                cart.CartPrice += cartItem.CartItemPrice;
                 _context.Cart.Add(cart);
                 _context.SaveChanges();
             }
             else if (cart.CartItemID2 == null)
             {
                 cart.CartItem2 = cartItem;
+                cart.CartPrice += cartItem.CartItemPrice;
                 _context.SaveChanges();
             }
 
@@ -46,6 +48,7 @@ namespace BandPromotionPlatform.Controllers
         {
             CartItem cartItem = new CartItem();
             Product product = _context.Product.Where(p => p.ProductID == productID).Select(p => p).First();
+            cartItem.ProductQuantity = 1;
             cartItem.Product = product;
             cartItem.CartItemPrice = cartItem.ProductQuantity * cartItem.Product.UnitPrice;
             _context.CartItem.Add(cartItem);
