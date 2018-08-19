@@ -103,7 +103,7 @@ namespace BandPromotionPlatform.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //GET find cart 
+        //POST find cart 
         public IActionResult FindCart(string email)
         {
             var customer = _context.Customer.Where(c => c.Email == email).Select(c => c).First();
