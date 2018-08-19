@@ -15,7 +15,10 @@ namespace BandPromotionPlatform.Controllers
         {
             return View();
         }
-
+        public IActionResult MusicVideos()
+        {
+            return View();
+        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
