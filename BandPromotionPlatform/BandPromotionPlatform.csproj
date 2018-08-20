@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\images\CorpseInClothes.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.1.3" />
     <PackageReference Include="Google.Apis.YouTube.v3" Version="1.35.1.1226" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
