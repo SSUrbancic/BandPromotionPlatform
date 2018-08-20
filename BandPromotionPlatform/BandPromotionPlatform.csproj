@@ -17,4 +17,8 @@
     <PackageReference Include="Stripe.net" Version="17.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Calendar\" />
+  </ItemGroup>
+
 </Project>

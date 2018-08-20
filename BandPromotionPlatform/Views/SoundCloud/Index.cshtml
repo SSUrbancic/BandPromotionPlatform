@@ -13,17 +13,16 @@
 
 
 <body>
-    
 
     <div class="col-md-6">
-        <iframe width="100%" height="300" scrolling="no" frameborder="no" 
+        <iframe width="100%" height="100" scrolling="yes" frameborder="no"
                 allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/480668361&color=%23790fcc&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
     </div>
-        @*<script type="text/javascript" id="connect">
-            //SC.initialize({
-            //    client_id: 'turkishchrist',
-            //    redirect_uri: 'http://localhost:8080/callback.html'
-            //});
+    @*<script type="text/javascript" id="connect">
+            SC.initialize({
+                client_id: 'turkishchrist',
+                redirect_uri: 'http://localhost:61775/SoundCloud'
+            });
             SC.get('tracks/drunktextingyou-prod-by-mikerobsears').then(function (user) { console.log('DrunkTextingYou [Prod. By MikeRobSears]', user); }).catch(function (error) {
                 console.log('catch', error);
             });

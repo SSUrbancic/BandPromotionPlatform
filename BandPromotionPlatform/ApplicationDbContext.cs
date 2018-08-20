@@ -20,5 +20,6 @@ namespace BandPromotionPlatform.Data
         public DbSet<BandPromotionPlatform.Models.Order> Order { get; set; }
         public DbSet<BandPromotionPlatform.Models.OrderDetails> OrderDetails { get; set; }
         public DbSet<BandPromotionPlatform.Models.Product> Product { get; set; }
+        public DbSet<BandPromotionPlatform.Models.Event> Event { get; set; }
     }
 }
