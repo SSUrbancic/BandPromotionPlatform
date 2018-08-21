@@ -9,10 +9,17 @@ namespace BandPromotionPlatform.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public ApplicationDbContext()
+        {
+        }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+        //public ApplicationDbContext(DbContextOptions options) : base(options)
+        //{
+        //}
         public DbSet<BandPromotionPlatform.Models.AdminUser> AdminUser { get; set; }
         public DbSet<BandPromotionPlatform.Models.Cart> Cart { get; set; }
         public DbSet<BandPromotionPlatform.Models.CartItem> CartItem { get; set; }

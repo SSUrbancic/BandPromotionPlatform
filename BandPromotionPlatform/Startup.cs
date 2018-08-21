@@ -43,6 +43,7 @@ namespace BandPromotionPlatform
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
