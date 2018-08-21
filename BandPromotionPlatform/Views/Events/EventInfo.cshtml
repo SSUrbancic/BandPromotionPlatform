@@ -3,52 +3,85 @@
 @{
     ViewData["Title"] = "EventInfo";
 }
+<!DOCTYPE html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+            * element that contains the map. */
+        #map {
+            height: 400px;
+            width: 400px;
+        }
+    </style>
+</head>
 
-<h2>EventInfo</h2>
+<body>
+    <div class="row">
 
-@*<div>
-    <h4>Event</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Subject)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Subject)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Start)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Start)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.End)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.End)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ThemeColor)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ThemeColor)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IsFullDay)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsFullDay)
-        </dd>
-    </dl>
-</div>*@
-<div>
-    @*<a asp-action="Edit" asp-route-id="@Model.EventID">Edit</a> |*@
-    <a asp-action="Index">Back to List</a>
-</div>
+
+        <h2>EventInfo</h2>
+
+
+
+        @*<div>
+                <h4>Event</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Subject)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Subject)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Start)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Start)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.End)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.End)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ThemeColor)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ThemeColor)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IsFullDay)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.IsFullDay)
+                    </dd>
+                </dl>
+            </div>*@
+        <div>
+            @*<a asp-action="Edit" asp-route-id="@Model.EventID">Edit</a> |*@
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+    <div id="map"></div>
+    <script>
+            var map;
+            function initMap() {
+                var customerLocation = { lat: 43.0389, lng: 87.9065  }
+                var map = new google.maps.Map(document.getElementById('map'), { zoom: 12, center: customerLocation });
+                var marker = new google.maps.Marker({ position: customerLocation, map: map });
+            }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWCtc5OOVUTyR6fK5Xeuo2zldVJw-h3F8&callback=initMap"
+            async defer></script>
+</body>
