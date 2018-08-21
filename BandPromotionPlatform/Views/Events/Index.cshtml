@@ -16,7 +16,8 @@
             </div>
             <div class="modal-body">
                 <p id="pDetails"></p>
-                <a asp-area="" asp-controller="Events" asp-action="EventInfo" @*RouteValues="Event.eventID"*@ class="btn btn-primary center-block">Go to Event</a>
+                <p id="pSubject"></p>
+                <a asp-area="" asp-controller="Events" asp-action="EventInfo" @*RouteValues="Event.eventID" *@ class="btn btn-primary center-block">Go to Event</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -73,13 +74,13 @@
                     eventClick: function (calEvent, jsEvent, view) {
                         $('#myModal #eventTitle').text(calEvent.title);
                         var $description = $('<div/>');
-                        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+                        $description.append($('<p/>').html('<b>Start:</b>' + " " + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
                         if (calEvent.end != null) {
-                            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                            $description.append($('<p/>').html('<b>End:</b>' + " " + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
                         }
-                        $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                        $description.append($('<p/>').html('<b>Description:</b>' + " " + calEvent.description));
+                        $description.append($('<p/>').html('<b>Subject:</b>' + " " + calEvent.Subject));
                         $('#myModal #pDetails').empty().html($description);
-
                         $('#myModal').modal();
                     }
                 })
