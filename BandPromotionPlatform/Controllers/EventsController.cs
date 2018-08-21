@@ -21,7 +21,10 @@ namespace BandPromotionPlatform.Controllers
         {
             return View();
         }
-
+        public IActionResult EventInfo()
+        {
+            return View();
+        }
         public JsonResult GetEvents()
         {
             using (_context)

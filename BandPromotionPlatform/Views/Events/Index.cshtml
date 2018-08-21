@@ -16,6 +16,7 @@
             </div>
             <div class="modal-body">
                 <p id="pDetails"></p>
+                <a asp-area="" asp-controller="Events" asp-action="EventInfo" @*RouteValues="Event.eventID"*@ class="btn btn-primary center-block">Go to Event</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -48,7 +49,6 @@
                             allDay : v.IsFullDay
                         });
                     })
-
                     GenerateCalender(events);
                 },
                 error: function (error) {
