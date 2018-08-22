@@ -28,5 +28,7 @@ namespace BandPromotionPlatform.Models
         public string ThemeColor { get; set; }
         [Display(Name = "Full Day")]
         public bool IsFullDay { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal longitude { get; set; }
     }
 }
