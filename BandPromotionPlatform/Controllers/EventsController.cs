@@ -19,6 +19,8 @@ namespace BandPromotionPlatform.Controllers
         {
             _context = context;
         }
+
+
         public JsonResult GetEvents()
         {
             using (_context)
@@ -28,6 +30,7 @@ namespace BandPromotionPlatform.Controllers
                 return new JsonResult(events, JsonRequestBehavior);
             }
         }
+
         public ActionResult _PartialOnClickEventInfo(int? id)
         {
             Event thisEvent = _context.Event.Where(x => x.EventID == id).Select(x => x).First();
@@ -37,7 +40,7 @@ namespace BandPromotionPlatform.Controllers
             //string formattedCity = thisEvent.City.Replace(' ', '+');
             //string formattedAddressComplete = streetAddress + "," + formattedCity + "," + thisEvent.State + "," + thisEvent.ZipCode.ToString();
             //ViewBag.Address = formattedAddressComplete;
-            var formattedAddressComplete = thisEvent.AddressLine1 + " " + thisEvent.AddessLine2 + " " + thisEvent.City + " " + thisEvent.State + " " + thisEvent.ZipCode;
+            var formattedAddressComplete = thisEvent.AddressLine1  + " " + thisEvent.City + " " + thisEvent.State + " " + thisEvent.ZipCode;
             ViewBag.Address = formattedAddressComplete;
             return View(thisEvent);
 

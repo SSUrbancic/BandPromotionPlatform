@@ -31,17 +31,36 @@
                 <p id="pDetails"></p>
                 <p id="pSubject"></p>
                 <p id="latitude"></p>
-                <partial name="_PartialOnClickEventInfo" />
-                @*<div id="map"></div>
-        <script>
-            function initMap() {
-
-                var customerLocation = { lat: 43.0389, lng: -87.9065 }
-                var map = new google.maps.Map(document.getElementById('map'), { zoom: 12, center: customerLocation });
-                var marker = new google.maps.Marker({ position: customerLocation, map: map });
-            }
-        </script>*@
                 @*<partial name="_PartialOnClickEventInfo" />*@
+                <div id="map"></div>
+                <script>
+                    var map;
+                    var lat = getLat();
+                    var long = getLong();
+                    function initMap() {
+                        var customerLocation = { lat: 43.0389, lng: -87.9065 }
+                        var map = new google.maps.Map(document.getElementById('map'), { zoom: 12, center: customerLocation });
+                        var marker = new google.maps.Marker({ position: customerLocation, map: map });
+                    }
+
+                    //function getLat(address) {
+                    //    var lat;
+                    //    var geocoder = new google.maps.Geocoder();
+                    //    if (geocoder) {
+                    //        geocoder.geocode({ 'address': address }, function (results, status) {
+                    //            if (status == google.maps.GeocoderStatus.OK) {
+                    //                var latitude = results[0].geometry.location.lat();
+                    //                var longitude = results[0].geometry.location.lng();
+                    //                $description.append($('<p/>').html('<b>lat:</b>' + " " + latitude));
+                    //                $description.append($('<p/>').html('<b>lng:</b>' + " " + longitude));
+                    //            }
+                    //            else {
+                    //                console.log("Geocoding failed: " + status);
+                    //            }
+                    //        });
+                    //    return lat;
+                    //}
+                </script>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -105,48 +124,34 @@
                     events: events,
                     eventClick:
                         function (calEvent, jsEvent, view) {
-                            window.location = '/Events/_PartialOnClickEventInfo/' + calEvent.EventID;
-                            //$('#myModal #eventTitle').text(calEvent.title);
-                            //var eventID = calEvent.eventID;
-                            //var $description = $('<div/>');
-                            //$description.append($('<p/>').html('<b>Start:</b>' + " " + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
-                            //if (calEvent.end != null) {
-                            //    $description.append($('<p/>').html('<b>End:</b>' + " " + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
-                            //}
-                            //$description.append($('<p/>').html('<b>Description:</b>' + " " + calEvent.description));
-                            //$description.append($('<p/>').html('<b>Address:</b>' + " " + calEvent.addressLine1 + " " + calEvent.addressLine2 + " " + calEvent.city + " " + calEvent.state + " " + calEvent.zipCode));
-                            //var geocoder = new google.maps.Geocoder();
-                            //var address = calEvent.addressLine1 + " " + calEvent.addressLine2 + " " + calEvent.city + " " + calEvent.state + " " + calEvent.zipCode;
-
-                            //if (geocoder) {
-                            //    geocoder.geocode({ 'address': address }, function (results, status) {
-                            //        if (status == google.maps.GeocoderStatus.OK) {
-                            //            var latitude = results[0].geometry.location.lat();
-                            //            var longitude = results[0].geometry.location.lng();
-                            //            $description.append($('<p/>').html(latitude));
-                            //            $description.append($('<p/>').html(longitude));
-                            //        }
-                            //        else {
-                            //            console.log("Geocoding failed: " + status);
-                            //        }
-                            //    });
-                            //}
-                            //$.ajax({
-                            //    type: "POST",
-                            //    url: "Events/_PartialOnClickEventInfo", // the method we are calling
-                            //    contentType: "application/json; charset=utf-8",
-                            //    data: { lat: latitude, lng: longitude },
-                            //    dataType: "json",
-                            //    success: function (result) {
-                            //        alert('Yay! It worked!');
-                            //        // Or if you are returning something
-                            //        alert('I returned... ' + result.WhateverIsReturning);
-                            //    },
-                            //    error: function (result) {
-                            //        alert('Oh no :(');
-                            //    }
-                            //$('#myModal #pDetails').empty().html($description);
-                            //$('#myModal').modal();
+                            //window.location = '/Events/_PartialOnClickEventInfo/' + calEvent.EventID;
+                            $('#myModal #eventTitle').text(calEvent.title);
+                            var eventID = calEvent.eventID;
+                            var $description = $('<div/>');
+                            $description.append($('<p/>').html('<b>Start:</b>' + " " + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+                            if (calEvent.end != null) {
+                                $description.append($('<p/>').html('<b>End:</b>' + " " + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                            }
+                            $description.append($('<p/>').html('<b>Description:</b>' + " " + calEvent.description));
+                            $description.append($('<p/>').html('<b>Address:</b>' + " " + calEvent.addressLine1 + " " + calEvent.addressLine2 + " " + calEvent.city + " " + calEvent.state + " " + calEvent.zipCode));
+                            var address = calEvent.addressLine1 + " " + calEvent.addressLine2 + " " + calEvent.city + " " + calEvent.state + " " + calEvent.zipCode;
+                                var geocoder = new google.maps.Geocoder();
+                                if (geocoder) {
+                                    geocoder.geocode({ 'address': address }, function (results, status) {
+                                        if (status == google.maps.GeocoderStatus.OK) {
+                                            var latitude = results[0].geometry.location.lat();
+                                            var longitude = results[0].geometry.location.lng();
+                                            $description.append($('<p/>').html('<b>lat:</b>' + " " + latitude));
+                                            $description.append($('<p/>').html('<b>lng:</b>' + " " + longitude));
+                                        }
+                                        else {
+                                            console.log("Geocoding failed: " + status);
+                                        }
+                                    });
+                            }       
+                            
+                            $('#myModal #pDetails').empty().html($description);
+                            $('#myModal').modal();
                         }
                 })
             }

@@ -5,12 +5,12 @@
 }
 
 <h2>MusicVideos</h2>
-<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/turkishchrist/drunktextingyou-prod-by-mikerobsears&color=%2380c410&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+
 @foreach (var video in YouTubeVideos)
 {
 <iframe id="player" type="text/html" width="640" height="390"
         src= @video
-        frameborder="0" autoplay="yes" allowFullScreen ="allowfullscreen"></iframe>
+        frameborder="0" autoplay="1" allowFullScreen ="allowfullscreen"></iframe>
 
 <script>
     var tag = document.createElement('script');

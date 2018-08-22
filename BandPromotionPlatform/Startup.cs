@@ -42,6 +42,10 @@ namespace BandPromotionPlatform
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            //   .AddDefaultUI()
+            //   .AddDefaultTokenProviders()
+            //   .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
