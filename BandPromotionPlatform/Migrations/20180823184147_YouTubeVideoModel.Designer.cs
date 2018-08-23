@@ -4,14 +4,16 @@ using BandPromotionPlatform.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BandPromotionPlatform.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180823184147_YouTubeVideoModel")]
+    partial class YouTubeVideoModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -223,19 +225,6 @@ namespace BandPromotionPlatform.Migrations
                     b.HasKey("ProductID");
 
                     b.ToTable("Product");
-                });
-
-            modelBuilder.Entity("BandPromotionPlatform.Models.YouTubeVideo", b =>
-                {
-                    b.Property<int>("VideoID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("youtubeId");
-
-                    b.HasKey("VideoID");
-
-                    b.ToTable("YouTubeVideo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

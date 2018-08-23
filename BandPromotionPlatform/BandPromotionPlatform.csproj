@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Calendar\**" />
+    <Content Remove="Views\Calendar\**" />
+    <EmbeddedResource Remove="Views\Calendar\**" />
+    <None Remove="Views\Calendar\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\images\CorpseInClothes.jpg" />
   </ItemGroup>
 
@@ -17,10 +24,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
     <PackageReference Include="Stripe.net" Version="17.9.0" />
     <PackageReference Include="TweetinviAPI" Version="4.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Calendar\" />
   </ItemGroup>
 
 </Project>
