@@ -30,5 +30,6 @@ namespace BandPromotionPlatform.Data
         public DbSet<BandPromotionPlatform.Models.Product> Product { get; set; }
         public DbSet<BandPromotionPlatform.Models.Event> Event { get; set; }
         public DbSet<BandPromotionPlatform.Models.YouTubeVideo> YouTubeVideo { get; set; }
+        public DbSet<BandPromotionPlatform.Models.SoundCloud> SoundCloud { get; set; }
     }
 }
