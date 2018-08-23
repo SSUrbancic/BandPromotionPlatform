@@ -6,11 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BandPromotionPlatform.Models;
 using Stripe;
+using BandPromotionPlatform.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace BandPromotionPlatform.Controllers
 {
     public class HomeController : Controller
     {
+        //scoped application context
+        protected ApplicationDbContext _context;
+        //manager for handling users, creation, deletion, roles, searching etc...
+        protected UserManager<IdentityUser> _UserManager;
+        //manager for user siging in and out
+        protected SignInManager<IdentityUser> _SignInManager;
+        public HomeController(ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        {
+            _context = context;
+            _UserManager = userManager;
+            _SignInManager = signInManager;
+        }
         public IActionResult Index()
         {
             return View();

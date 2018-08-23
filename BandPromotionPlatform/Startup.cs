@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BandPromotionPlatform.Models;
 using Stripe;
+using BandPromotionPlatform.IoC;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace BandPromotionPlatform
 {
@@ -36,26 +38,42 @@ namespace BandPromotionPlatform
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            //AddIdentity adds cookie based authentication
+            //Adds scoped classes for things like UserManager, SignInManager, PasswordHashers etc...
+            //NOTE: automatically addss valited user to from a cookie to the HttpContext.User
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()    
-                .AddDefaultUI()  
-                .AddDefaultTokenProviders()    
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    //Adds UserStore and RoleStore from the context  
+            //    //That are consumed by the UserManager and RoleManager
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    //Adds a provider that generates unique keys and hashes for things like 
+            //    //forgot password links, phone number verification codes etc...
+            //    .AddDefaultTokenProviders();
+            // TODO: Change Login Url
+            // and change cookie timeout
+
+            //Old code below(before finding awesome tutorial)
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             StripeConfiguration.SetApiKey(Configuration.GetSection("Stripe")["SecretKey"]);
+            //Store instance of the Dependancy Injection service provider so our application can access it anywhere
+            //IoCContainer.Provider = (ServiceProvider)serviceProvider;
+            //Setup Identity
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -68,10 +86,10 @@ namespace BandPromotionPlatform
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseAuthentication();
            
             app.UseMvc(routes =>
             {
