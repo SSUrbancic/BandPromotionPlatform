@@ -22,6 +22,7 @@ namespace BandPromotionPlatform
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -39,8 +40,6 @@ namespace BandPromotionPlatform
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDefaultIdentity<IdentityUser>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentity<IdentityUser, IdentityRole>()    
                 .AddDefaultUI()  
@@ -48,10 +47,6 @@ namespace BandPromotionPlatform
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //   .AddDefaultUI()
-            //   .AddDefaultTokenProviders()
-            //   .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -77,7 +72,7 @@ namespace BandPromotionPlatform
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
+           
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

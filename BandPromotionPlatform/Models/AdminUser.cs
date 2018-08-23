@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,6 +23,9 @@ namespace BandPromotionPlatform.Models
         public string Password { get; set; }
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [ForeignKey("IdentityUser")]
+        public string UserID { get; set; }
+        public IdentityUser IdentityUser { get; set; }
 
     }
 }

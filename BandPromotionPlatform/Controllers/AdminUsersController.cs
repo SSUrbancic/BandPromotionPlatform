@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BandPromotionPlatform.Data;
 using BandPromotionPlatform.Models;
+using System.Security.Claims;
 
 namespace BandPromotionPlatform.Controllers
 {
     public class AdminUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private AspNetUserManager<IdentityUser> userManager;
 
         public AdminUsersController(ApplicationDbContext context)
         {
             _context = context;
+            
         }
 
         // GET: AdminUsers
@@ -56,8 +60,9 @@ namespace BandPromotionPlatform.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AdminID,FirstName,LastName,UserName,Password,Email")] AdminUser adminUser)
         {
+            //var userID = userManager.GetUserId(User);
             if (ModelState.IsValid)
-            {
+            {                
                 _context.Add(adminUser);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
