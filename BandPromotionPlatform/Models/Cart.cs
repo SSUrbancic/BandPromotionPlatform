@@ -21,7 +21,7 @@ namespace BandPromotionPlatform.Models
         public int? CartItemID2 { get; set; }
         public CartItem CartItem2 { get; set; }
         [ForeignKey("Customer")]
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
         public Customer Customer { get; set; }
 
     }

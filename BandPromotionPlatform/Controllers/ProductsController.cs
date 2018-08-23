@@ -32,7 +32,7 @@ namespace BandPromotionPlatform.Controllers
                 cart.CartItem1 = cartItem;
                 cart.Customer = customer;
                 cart.CartPrice += cartItem.CartItemPrice;
-                _context.Cart.Add(cart);
+                //_context.Cart.Add(cart);
                 _context.SaveChanges();
             }
             else if (cart.CartItemID2 == null)
@@ -58,16 +58,19 @@ namespace BandPromotionPlatform.Controllers
         public Customer DetermineCustomer(ApplicationDbContext context, int customerID)
         {
             Customer correctCustomer;
-            Customer thisCustomer = context.Customer.Where(c => c.CustomerID == customerID).Select(c => c).First();
+  
             try
             {
+                Customer thisCustomer = context.Customer.Where(c => c.CustomerID == customerID).Select(c => c).First();
                 correctCustomer = context.Customer.Where(c => c.Email == thisCustomer.Email).Select(c => c).First();
                 context.Customer.Remove(thisCustomer);
-                context.SaveChangesAsync();
+                context.SaveChanges();
             }
             catch
             {
-                return thisCustomer;
+                correctCustomer = new Customer();
+                context.Customer.Add(correctCustomer);
+                context.SaveChanges();
             }
             return correctCustomer;
         }
@@ -77,12 +80,15 @@ namespace BandPromotionPlatform.Controllers
             try
             {
                 thisCart = context.Cart.Where(c => c.CustomerID == customer.CustomerID).Select(c => c).First();
+                return thisCart;
             }
             catch
             {
                 thisCart = new Cart();
+                context.Cart.Add(thisCart);
+                context.SaveChanges();
+                return thisCart;
             }
-            return thisCart;
 
         }
 

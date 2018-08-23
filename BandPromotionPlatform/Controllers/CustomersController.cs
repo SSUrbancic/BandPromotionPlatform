@@ -78,10 +78,18 @@ namespace BandPromotionPlatform.Controllers
             var product1 = _context.Product.Where(c => c.ProductID == cartItem1.ProductID).Select(c => c).First();
             customerCart.CartItem1 = cartItem1;
             customerCart.CartItem1.Product = product1;
-            var cartItem2 = _context.CartItem.Where(c => c.CartItemID == customerCart.CartItemID2).Select(c => c).First();
-            var product2 = _context.Product.Where(c => c.ProductID == cartItem2.ProductID).Select(c => c).First();
-            customerCart.CartItem2 = cartItem2;
-            customerCart.CartItem2.Product = product2;
+            CartItem cartItem2;
+            try
+            {
+                cartItem2 = _context.CartItem.Where(c => c.CartItemID == customerCart.CartItemID2).Select(c => c).First();
+                var product2 = _context.Product.Where(c => c.ProductID == cartItem2.ProductID).Select(c => c).First();
+                customerCart.CartItem2 = cartItem2;
+                customerCart.CartItem2.Product = product2;
+            }
+            catch
+            {
+                cartItem2 = null;
+            }
             var customer = _context.Customer.Where(c => c.CustomerID == customerID).Select(c => c).First();
             customerCart.Customer = customer;
             return View(customerCart);

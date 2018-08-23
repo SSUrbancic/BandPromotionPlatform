@@ -56,7 +56,7 @@ namespace BandPromotionPlatform.Migrations
 
                     b.Property<double>("CartPrice");
 
-                    b.Property<int>("CustomerID");
+                    b.Property<int?>("CustomerID");
 
                     b.HasKey("CartID");
 
@@ -100,6 +100,8 @@ namespace BandPromotionPlatform.Migrations
 
                     b.Property<string>("BillingCity");
 
+                    b.Property<string>("BillingState");
+
                     b.Property<string>("BillingZipCode");
 
                     b.Property<string>("Email");
@@ -111,6 +113,8 @@ namespace BandPromotionPlatform.Migrations
                     b.Property<string>("ShippingAddressLine2");
 
                     b.Property<string>("ShippingCity");
+
+                    b.Property<string>("ShippingState");
 
                     b.Property<string>("ShippingZipCode");
 
@@ -401,8 +405,7 @@ namespace BandPromotionPlatform.Migrations
 
                     b.HasOne("BandPromotionPlatform.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CustomerID");
                 });
 
             modelBuilder.Entity("BandPromotionPlatform.Models.CartItem", b =>

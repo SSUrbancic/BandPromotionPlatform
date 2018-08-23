@@ -14,7 +14,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BandPromotionPlatform.Models;
 using Stripe;
-using BandPromotionPlatform.IoC;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace BandPromotionPlatform

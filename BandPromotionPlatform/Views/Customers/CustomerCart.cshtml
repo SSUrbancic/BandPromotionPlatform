@@ -39,8 +39,9 @@
 </div>
 @using Microsoft.Extensions.Options
 @inject IOptions<StripeSettings> Stripe
-
-<form action="/Stripe/Charge" method="POST">
+<form asp-controller="Stripe" asp-action="Charge"
+      asp-route-returnurl="@ViewData["./Customers/CustomerCart"]"
+      method="post" class="form-horizontal" routeValue="@Model.CartID" role="form">
     <article>
         <label>Amount: $@Html.DisplayFor(model => model.CartPrice)</label>
     </article>

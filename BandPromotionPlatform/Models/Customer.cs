@@ -18,6 +18,8 @@ namespace BandPromotionPlatform.Models
         public string ShippingAddressLine2 { get; set; }
         [Display(Name = "City")]
         public string ShippingCity { get; set; }
+        [Display(Name = "State")]
+        public string ShippingState { get; set; }
         [Display(Name = "Zip Code")]
         public string ShippingZipCode { get; set; }
         [Display(Name = "Shipping Address Line 1")]
@@ -26,6 +28,8 @@ namespace BandPromotionPlatform.Models
         public string BillingAddressLine2 { get; set; }
         [Display(Name = "City")]
         public string BillingCity { get; set; }
+        [Display(Name = "State")]
+        public string BillingState { get; set; }
         [Display(Name = "Zip Code")]
         public string BillingZipCode { get; set; }
         [Display(Name = "Phone Number")]

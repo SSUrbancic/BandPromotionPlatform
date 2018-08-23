@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BandPromotionPlatform.Data;
 using BandPromotionPlatform.Models;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
@@ -11,6 +12,7 @@ namespace BandPromotionPlatform.Controllers
 {
     public class StripeController : Controller
     {
+        protected ApplicationDbContext _context;
         public IActionResult Index()
         {
             return View();
@@ -20,11 +22,11 @@ namespace BandPromotionPlatform.Controllers
         {
             return View();
         }
-        public IActionResult Charge(string stripeEmail, string stripeToken)
+        public IActionResult Charge(string stripeEmail, string stripeToken, int cartID)
         {
             var customers = new StripeCustomerService();
             var charges = new StripeChargeService();
-
+            var cartPrice = _context.Cart.Where(x => x.CartID == cartID).Select(x => x.CartPrice).First();
             var customer = customers.Create(new StripeCustomerCreateOptions
             {
                 Email = stripeEmail,
@@ -33,7 +35,7 @@ namespace BandPromotionPlatform.Controllers
 
             var charge = charges.Create(new StripeChargeCreateOptions
             {
-                Amount = 500,
+                Amount = ViewBag.CartPrice,
                 Description = "Sample Charge",
                 Currency = "usd",
                 CustomerId = customer.Id

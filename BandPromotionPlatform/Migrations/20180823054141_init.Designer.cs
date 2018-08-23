@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BandPromotionPlatform.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180817202731_intit")]
-    partial class intit
+    [Migration("20180823054141_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,9 +35,13 @@ namespace BandPromotionPlatform.Migrations
 
                     b.Property<string>("Password");
 
+                    b.Property<string>("UserID");
+
                     b.Property<string>("UserName");
 
                     b.HasKey("AdminID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("AdminUser");
                 });
@@ -51,6 +55,8 @@ namespace BandPromotionPlatform.Migrations
                     b.Property<int?>("CartItemID1");
 
                     b.Property<int?>("CartItemID2");
+
+                    b.Property<double>("CartPrice");
 
                     b.Property<int>("CustomerID");
 
@@ -115,6 +121,43 @@ namespace BandPromotionPlatform.Migrations
                     b.HasKey("CustomerID");
 
                     b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("BandPromotionPlatform.Models.Event", b =>
+                {
+                    b.Property<int>("EventID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddessLine2");
+
+                    b.Property<string>("AddressLine1");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Description");
+
+                    b.Property<DateTime>("End");
+
+                    b.Property<bool>("IsFullDay");
+
+                    b.Property<decimal>("Latitude");
+
+                    b.Property<DateTime>("Start");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("Subject");
+
+                    b.Property<string>("ThemeColor");
+
+                    b.Property<int>("ZipCode");
+
+                    b.Property<decimal>("longitude");
+
+                    b.HasKey("EventID");
+
+                    b.ToTable("Event");
                 });
 
             modelBuilder.Entity("BandPromotionPlatform.Models.Order", b =>
@@ -297,11 +340,9 @@ namespace BandPromotionPlatform.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -332,17 +373,22 @@ namespace BandPromotionPlatform.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BandPromotionPlatform.Models.AdminUser", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("BandPromotionPlatform.Models.Cart", b =>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BandPromotionPlatform.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180818063042_CartPrice")]
-    partial class CartPrice
+    [Migration("20180823055845_UpdateCusomerModel")]
+    partial class UpdateCusomerModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,9 +35,13 @@ namespace BandPromotionPlatform.Migrations
 
                     b.Property<string>("Password");
 
+                    b.Property<string>("UserID");
+
                     b.Property<string>("UserName");
 
                     b.HasKey("AdminID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("AdminUser");
                 });
@@ -98,6 +102,8 @@ namespace BandPromotionPlatform.Migrations
 
                     b.Property<string>("BillingCity");
 
+                    b.Property<string>("BillingState");
+
                     b.Property<string>("BillingZipCode");
 
                     b.Property<string>("Email");
@@ -110,6 +116,8 @@ namespace BandPromotionPlatform.Migrations
 
                     b.Property<string>("ShippingCity");
 
+                    b.Property<string>("ShippingState");
+
                     b.Property<string>("ShippingZipCode");
 
                     b.Property<string>("user");
@@ -117,6 +125,43 @@ namespace BandPromotionPlatform.Migrations
                     b.HasKey("CustomerID");
 
                     b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("BandPromotionPlatform.Models.Event", b =>
+                {
+                    b.Property<int>("EventID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddessLine2");
+
+                    b.Property<string>("AddressLine1");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Description");
+
+                    b.Property<DateTime>("End");
+
+                    b.Property<bool>("IsFullDay");
+
+                    b.Property<decimal>("Latitude");
+
+                    b.Property<DateTime>("Start");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("Subject");
+
+                    b.Property<string>("ThemeColor");
+
+                    b.Property<int>("ZipCode");
+
+                    b.Property<decimal>("longitude");
+
+                    b.HasKey("EventID");
+
+                    b.ToTable("Event");
                 });
 
             modelBuilder.Entity("BandPromotionPlatform.Models.Order", b =>
@@ -299,11 +344,9 @@ namespace BandPromotionPlatform.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -334,17 +377,22 @@ namespace BandPromotionPlatform.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BandPromotionPlatform.Models.AdminUser", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("BandPromotionPlatform.Models.Cart", b =>
