@@ -38,7 +38,10 @@
                     var lat = getLat();
                     var long = getLong();
                     function initMap() {
-                        var customerLocation = { lat: 43.0389, lng: -87.9065 }
+                        var customerLocation = {
+                            lat: 42.9885774,
+                            lng: - 88.06471499999998
+                        }
                         var map = new google.maps.Map(document.getElementById('map'), { zoom: 12, center: customerLocation });
                         var marker = new google.maps.Marker({ position: customerLocation, map: map });
                     }

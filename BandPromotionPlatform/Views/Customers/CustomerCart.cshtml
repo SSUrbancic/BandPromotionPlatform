@@ -39,6 +39,7 @@
 </div>
 @using Microsoft.Extensions.Options
 @inject IOptions<StripeSettings> Stripe
+@{var cartPrice = Convert.ToInt32(Model.CartPrice * 100);}
 <form asp-controller="Stripe" asp-action="Charge"
       asp-route-returnurl="@ViewData["./Customers/CustomerCart"]"
       method="post" class="form-horizontal" routeValue="@Model.CartID" role="form">
@@ -50,6 +51,6 @@
             data-key="@Stripe.Value.PublishableKey"
             data-locale="auto"
             data-description="Sample Charge"
-            data-amount="500">
+            data-amount="cartPrice">
     </script>
 </form>

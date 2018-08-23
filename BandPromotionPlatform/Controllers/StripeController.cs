@@ -7,12 +7,17 @@ using BandPromotionPlatform.Data;
 using BandPromotionPlatform.Models;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
+using Tweetinvi.Core.Events;
 
 namespace BandPromotionPlatform.Controllers
 {
     public class StripeController : Controller
     {
-        protected ApplicationDbContext _context;
+        public ApplicationDbContext _context;
+        public StripeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
             return View();
@@ -22,11 +27,15 @@ namespace BandPromotionPlatform.Controllers
         {
             return View();
         }
-        public IActionResult Charge(string stripeEmail, string stripeToken, int cartID)
+        public IActionResult Charge(string stripeEmail, string stripeToken)
         {
             var customers = new StripeCustomerService();
             var charges = new StripeChargeService();
-            var cartPrice = _context.Cart.Where(x => x.CartID == cartID).Select(x => x.CartPrice).First();
+            Customer thisCustomer = _context.Customer.Where(c => c.Email == stripeEmail).Select(c => c).First();
+            var thisCartPrice = _context.Cart.Where(x => x.CustomerID == thisCustomer.CustomerID).Select(x => x.CartPrice).First();
+            ViewBag.CartPrice = thisCartPrice;
+            var cartPrice = Math.Round(thisCartPrice * 100);
+            var intCartPrice = Convert.ToInt32(cartPrice);
             var customer = customers.Create(new StripeCustomerCreateOptions
             {
                 Email = stripeEmail,
@@ -35,7 +44,7 @@ namespace BandPromotionPlatform.Controllers
 
             var charge = charges.Create(new StripeChargeCreateOptions
             {
-                Amount = ViewBag.CartPrice,
+                Amount = intCartPrice,
                 Description = "Sample Charge",
                 Currency = "usd",
                 CustomerId = customer.Id

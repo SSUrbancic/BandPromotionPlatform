@@ -32,8 +32,14 @@ namespace BandPromotionPlatform.Controllers
                 cart.CartItem1 = cartItem;
                 cart.Customer = customer;
                 cart.CartPrice += cartItem.CartItemPrice;
-                //_context.Cart.Add(cart);
-                _context.SaveChanges();
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("CustomerCart", "Customers", new { customerID = customer.CustomerID });
+                }
             }
             else if (cart.CartItemID2 == null)
             {
@@ -57,23 +63,17 @@ namespace BandPromotionPlatform.Controllers
         }
         public Customer DetermineCustomer(ApplicationDbContext context, int customerID)
         {
-            Customer correctCustomer;
-  
-            try
+            var thisCustomer = context.Customer.Where(c => c.CustomerID == customerID).Select(c => c).First();
+            var correctCustomer = context.Customer.Where(c => c.Email == thisCustomer.Email).Select(c => c).First();
+            if (correctCustomer.CustomerID != thisCustomer.CustomerID)
             {
-                Customer thisCustomer = context.Customer.Where(c => c.CustomerID == customerID).Select(c => c).First();
-                correctCustomer = context.Customer.Where(c => c.Email == thisCustomer.Email).Select(c => c).First();
                 context.Customer.Remove(thisCustomer);
-                context.SaveChanges();
-            }
-            catch
-            {
-                correctCustomer = new Customer();
-                context.Customer.Add(correctCustomer);
                 context.SaveChanges();
             }
             return correctCustomer;
         }
+
+        
         public Cart DetermineCart(ApplicationDbContext context, Customer customer)
         {
             Cart thisCart;
