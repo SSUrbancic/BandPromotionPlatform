@@ -29,7 +29,10 @@ namespace BandPromotionPlatform.Controllers
         {
             return View();
         }
-
+        public IActionResult ArtistsBio()
+        {
+            return View();
+        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

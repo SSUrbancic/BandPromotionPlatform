@@ -26,4 +26,8 @@
     <PackageReference Include="TweetinviAPI" Version="4.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Artists\" />
+  </ItemGroup>
+
 </Project>

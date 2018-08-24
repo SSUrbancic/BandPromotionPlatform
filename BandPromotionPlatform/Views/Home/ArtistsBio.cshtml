@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewData["Title"] = "ArtistsBio";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+
+            button:hover, a:hover {
+                opacity: 0.7;
+            }
+
+        .fa_custom {
+            color: #0099CC
+        }
+    </style>
+</head>
+<body style="background-color: ThreeDDarkShadow">
+    @*<h2 style="text-align:center">User Profile Card</h2>*@
+    <div class="row">
+        <div class="col-md-3">
+            <img src="~/images/logo.png" class="img-fluid" alt="Responsive image" style="min-width: 30%; max-height: 400px">
+        </div>
+            <img src="~/images/GroupPhoto.jpg" class="img-fluid" alt="Responsive image" style="min-width: 70%; max-height: 400px">
+
+    </div>
+    <div>
+
+    </div>
+
+    <div class="row" style="padding-top: 25px;">
+        <div class="col-md-4">
+            <div class="card rounded" style="background-color: aliceblue; box-shadow: 10px 10px">
+                <img src="~/images/TurkishChrist.jpg" alt="John" style="width:100%">
+                <h1>Turk</h1>
+                <p class="title">Artist</p>
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                <div style="margin: 24px 0;">
+                    <a href="https://twitter.com/gang_dead?lang=en"><i class="fa fa-twitter" style="font-size:48px; color: dodgerblue"></i></a>
+                    <a href="https://soundcloud.com/turkishchrist"><i class="fa fa-soundcloud fa_custom fa-2x" style="color: orangered"></i></a>
+                    <a href="https://www.instagram.com/turkishchrist_deadgang/"><i class="fa fa-instagram" style="font-size:48px;color:red"></i></a>
+                    <a href="https://www.facebook.com/TurkishChrist/?fb_dtsg_ag=AdzVQysc1WO1K0awUX0mXCyInVwgTOnGgtsEx2whLa16GQ%3AAdx00ZnxRM9sJ0FF2VB-_FEJetJ4U8JAIc_GK8VnE4xznQ"><i class="fa fa-facebook fa-2x" style="color:cornflowerblue"></i></a>
+                </div>
+                <p><button></button></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card rounded" style="background-color: aliceblue; box-shadow: 10px 10px">
+                <img src="~/images/TurkishChrist.jpg" alt="John" style="width:100%">
+                <h1>Turk</h1>
+                <p class="title">Artist</p>
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                <div style="margin: 24px 0;">
+                    <a href="https://twitter.com/gang_dead?lang=en"><i class="fa fa-twitter" style="font-size:48px; color: dodgerblue"></i></a>
+                    <a href="https://soundcloud.com/turkishchrist"><i class="fa fa-soundcloud fa_custom fa-2x" style="color: orangered"></i></a>
+                    <a href="https://www.instagram.com/turkishchrist_deadgang/"><i class="fa fa-instagram" style="font-size:48px;color:red"></i></a>
+                    <a href="https://www.facebook.com/TurkishChrist/?fb_dtsg_ag=AdzVQysc1WO1K0awUX0mXCyInVwgTOnGgtsEx2whLa16GQ%3AAdx00ZnxRM9sJ0FF2VB-_FEJetJ4U8JAIc_GK8VnE4xznQ"><i class="fa fa-facebook fa-2x" style="color:cornflowerblue"></i></a>
+                </div>
+                <p><button></button></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card rounded" style="background-color: aliceblue; box-shadow: 10px 10px">
+                <img src="~/images/TurkishChrist.jpg" alt="John" style="width:100%">
+                <h1>Turk</h1>
+                <p class="title">Artist</p>
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                <div style="margin: 24px 0;">
+                    <a href="https://twitter.com/gang_dead?lang=en"><i class="fa fa-twitter" style="font-size:48px; color: dodgerblue"></i></a>
+                    <a href="https://soundcloud.com/turkishchrist"><i class="fa fa-soundcloud fa_custom fa-2x" style="color: orangered"></i></a>
+                    <a href="https://www.instagram.com/turkishchrist_deadgang/"><i class="fa fa-instagram" style="font-size:48px;color:red"></i></a>
+                    <a href="https://www.facebook.com/TurkishChrist/?fb_dtsg_ag=AdzVQysc1WO1K0awUX0mXCyInVwgTOnGgtsEx2whLa16GQ%3AAdx00ZnxRM9sJ0FF2VB-_FEJetJ4U8JAIc_GK8VnE4xznQ"><i class="fa fa-facebook fa-2x" style="color:cornflowerblue"></i></a>
+                </div>
+                <p><button></button></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+<footer>
+    &copy;
+</footer>
+</html>
